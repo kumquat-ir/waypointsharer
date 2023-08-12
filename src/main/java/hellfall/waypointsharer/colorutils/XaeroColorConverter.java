@@ -3,43 +3,23 @@ package hellfall.waypointsharer.colorutils;
 import java.awt.*;
 
 public class XaeroColorConverter {
-    private static final double[][] xaerosColorsLAB = {
-            ColorUtility.getLab(new Color(0, 0, 0)),
-            ColorUtility.getLab(new Color(0, 0, 128)),
-            ColorUtility.getLab(new Color(0, 128, 0)),
-            ColorUtility.getLab(new Color(0, 128, 128)),
-            ColorUtility.getLab(new Color(128, 0, 0)),
-            ColorUtility.getLab(new Color(128, 0, 128)),
-            ColorUtility.getLab(new Color(128, 128, 0)),
-            ColorUtility.getLab(new Color(192, 192, 192)),
-            ColorUtility.getLab(new Color(128, 128, 128)),
-            ColorUtility.getLab(new Color(0, 0, 255)),
-            ColorUtility.getLab(new Color(0, 255, 0)),
-            ColorUtility.getLab(new Color(0, 255, 255)),
-            ColorUtility.getLab(new Color(255, 0, 0)),
-            ColorUtility.getLab(new Color(255, 0, 255)),
-            ColorUtility.getLab(new Color(255, 255, 0)),
-            ColorUtility.getLab(new Color(255, 255, 255)),
-    };
 
-    private static final int[] xaerosColorsRGB = {
-            new Color(0, 0, 0).getRGB(),
-            new Color(0, 0, 128).getRGB(),
-            new Color(0, 128, 0).getRGB(),
-            new Color(0, 128, 128).getRGB(),
-            new Color(128, 0, 0).getRGB(),
-            new Color(128, 0, 128).getRGB(),
-            new Color(128, 128, 0).getRGB(),
-            new Color(192, 192, 192).getRGB(),
-            new Color(128, 128, 128).getRGB(),
-            new Color(0, 0, 255).getRGB(),
-            new Color(0, 255, 0).getRGB(),
-            new Color(0, 255, 255).getRGB(),
-            new Color(255, 0, 0).getRGB(),
-            new Color(255, 0, 255).getRGB(),
-            new Color(255, 255, 0).getRGB(),
-            new Color(255, 255, 255).getRGB(),
-    };
+    private static final double[][] xaerosColorsLAB = { ColorUtility.getLab(new Color(0, 0, 0)),
+        ColorUtility.getLab(new Color(0, 0, 128)), ColorUtility.getLab(new Color(0, 128, 0)),
+        ColorUtility.getLab(new Color(0, 128, 128)), ColorUtility.getLab(new Color(128, 0, 0)),
+        ColorUtility.getLab(new Color(128, 0, 128)), ColorUtility.getLab(new Color(128, 128, 0)),
+        ColorUtility.getLab(new Color(192, 192, 192)), ColorUtility.getLab(new Color(128, 128, 128)),
+        ColorUtility.getLab(new Color(0, 0, 255)), ColorUtility.getLab(new Color(0, 255, 0)),
+        ColorUtility.getLab(new Color(0, 255, 255)), ColorUtility.getLab(new Color(255, 0, 0)),
+        ColorUtility.getLab(new Color(255, 0, 255)), ColorUtility.getLab(new Color(255, 255, 0)),
+        ColorUtility.getLab(new Color(255, 255, 255)), };
+
+    private static final int[] xaerosColorsRGB = { new Color(0, 0, 0).getRGB(), new Color(0, 0, 128).getRGB(),
+        new Color(0, 128, 0).getRGB(), new Color(0, 128, 128).getRGB(), new Color(128, 0, 0).getRGB(),
+        new Color(128, 0, 128).getRGB(), new Color(128, 128, 0).getRGB(), new Color(192, 192, 192).getRGB(),
+        new Color(128, 128, 128).getRGB(), new Color(0, 0, 255).getRGB(), new Color(0, 255, 0).getRGB(),
+        new Color(0, 255, 255).getRGB(), new Color(255, 0, 0).getRGB(), new Color(255, 0, 255).getRGB(),
+        new Color(255, 255, 0).getRGB(), new Color(255, 255, 255).getRGB(), };
 
     public static int rgbToXaeroColor(int rgb) {
         int red = clampColor(rgb >> 16 & 0xFF);

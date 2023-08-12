@@ -1,15 +1,15 @@
 package hellfall.waypointsharer;
 
-import com.gtnewhorizon.gtnhmixins.ILateMixinLoader;
-import com.gtnewhorizon.gtnhmixins.LateMixin;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import com.gtnewhorizon.gtnhmixins.ILateMixinLoader;
+import com.gtnewhorizon.gtnhmixins.LateMixin;
+
 @LateMixin
 public class WSLateMixins implements ILateMixinLoader {
+
     @Override
     public String getMixinConfig() {
         return "mixins.waypointsharer.late.json";

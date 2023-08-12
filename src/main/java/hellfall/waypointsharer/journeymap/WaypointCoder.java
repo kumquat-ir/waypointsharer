@@ -1,15 +1,18 @@
 package hellfall.waypointsharer.journeymap;
 
+import java.awt.*;
+
+import net.minecraft.client.Minecraft;
+
 import hellfall.waypointsharer.WaypointSharer;
 import hellfall.waypointsharer.colorutils.XaeroColorConverter;
 import journeymap.client.model.Waypoint;
 import journeymap.client.waypoint.WaypointStore;
-import net.minecraft.client.Minecraft;
-
-import java.awt.*;
 
 public class WaypointCoder {
+
     public static void sendWaypoint(Waypoint waypoint) {
+        // spotless:off
         String message = WaypointSharer.JM_WAYPOINT_KEY +
             waypoint.getName() + "\u0091" +
             waypoint.getX() + "\u0091" +
@@ -17,6 +20,7 @@ public class WaypointCoder {
             waypoint.getZ() + "\u0091" +
             waypoint.getColor() + "\u0091" +
             waypoint.getDimensions().toArray()[0];
+        //spotless:on
         Minecraft.getMinecraft().thePlayer.sendChatMessage(message);
     }
 
@@ -30,16 +34,17 @@ public class WaypointCoder {
             Integer.parseInt(args[4]),
             new Color(Integer.parseInt(args[5])),
             Waypoint.Type.Normal,
-            Integer.parseInt(args[6])
-        );
-        WaypointStore.instance().save(waypoint);
+            Integer.parseInt(args[6]));
+        WaypointStore.instance()
+            .save(waypoint);
     }
 
     public static void readXaeroWaypoint(String message) {
         // {"xaero-waypoint", name, symbol, x, y, z, color, rotation?, yaw, "Internal-dim%{dimid}-waypoints, vp?}
         String[] args = message.split(":");
         if (args[9].startsWith("Internal-")) {
-            String dim = args[9].replace("Internal-", "").replace("-waypoints", "");
+            String dim = args[9].replace("Internal-", "")
+                .replace("-waypoints", "");
             int dimid = switch (dim) {
                 case "Overworld" -> 0;
                 case "Nether" -> -1;
@@ -47,8 +52,7 @@ public class WaypointCoder {
                 default -> {
                     if (dim.startsWith("dim%")) {
                         yield Integer.parseInt(dim.substring(4));
-                    }
-                    else yield 0;
+                    } else yield 0;
                 }
             };
             Waypoint waypoint = new Waypoint(
@@ -58,9 +62,9 @@ public class WaypointCoder {
                 Integer.parseInt(args[5]),
                 new Color(XaeroColorConverter.xaeroToRGBColor(Integer.parseInt(args[6]))),
                 Waypoint.Type.Normal,
-                dimid
-            );
-            WaypointStore.instance().save(waypoint);
+                dimid);
+            WaypointStore.instance()
+                .save(waypoint);
         }
     }
 }
