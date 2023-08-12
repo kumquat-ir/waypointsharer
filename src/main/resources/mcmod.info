@@ -1,0 +1,17 @@
+{
+	"modListVersion": 2,
+	"modList": [{
+		"modid": "${modId}",
+		"name": "${modName}",
+		"description": "Share your waypoints!",
+		"version": "${modVersion}",
+		"mcversion": "${minecraftVersion}",
+		"url": "",
+		"updateUrl": "",
+		"authorList": ["SinTho0r4s"],
+		"credits": "",
+		"logoFile": "",
+		"screenshots": [],
+		"parent": ""
+	}]
+}
