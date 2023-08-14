@@ -1,2 +1,3 @@
 waypointsharer.sharebutton=Share
 waypointsharer.sharemessage=%1$s shared a waypoint called "%2$s"! §2§n[Add]
+waypointsharer.addedwaypoint=Added waypoint "%s"!

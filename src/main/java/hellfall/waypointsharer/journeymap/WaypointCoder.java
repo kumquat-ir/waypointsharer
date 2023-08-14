@@ -3,6 +3,9 @@ package hellfall.waypointsharer.journeymap;
 import java.awt.*;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 
 import hellfall.waypointsharer.WaypointSharer;
 import hellfall.waypointsharer.colorutils.XaeroColorConverter;
@@ -27,16 +30,13 @@ public class WaypointCoder {
     public static void readJMWaypoint(String message) {
         // {"ws-jm-waypoint", name, x, y, z, rgb color, dim id, vp?}
         String[] args = message.split("\u0091");
-        Waypoint waypoint = new Waypoint(
+        addWaypoint(
             args[1],
             Integer.parseInt(args[2]),
             Integer.parseInt(args[3]),
             Integer.parseInt(args[4]),
-            new Color(Integer.parseInt(args[5])),
-            Waypoint.Type.Normal,
+            Integer.parseInt(args[5]),
             Integer.parseInt(args[6]));
-        WaypointStore.instance()
-            .save(waypoint);
     }
 
     public static void readXaeroWaypoint(String message) {
@@ -55,16 +55,20 @@ public class WaypointCoder {
                     } else yield 0;
                 }
             };
-            Waypoint waypoint = new Waypoint(
+            addWaypoint(
                 args[1],
                 Integer.parseInt(args[3]),
                 Integer.parseInt(args[4]),
                 Integer.parseInt(args[5]),
-                new Color(XaeroColorConverter.xaeroToRGBColor(Integer.parseInt(args[6]))),
-                Waypoint.Type.Normal,
+                XaeroColorConverter.xaeroToRGBColor(Integer.parseInt(args[6])),
                 dimid);
-            WaypointStore.instance()
-                .save(waypoint);
         }
+    }
+
+    private static void addWaypoint(String name, int x, int y, int z, int color, int dim) {
+        WaypointStore.instance()
+            .save(new Waypoint(name, x, y, z, new Color(color), Waypoint.Type.Normal, dim));
+        Minecraft.getMinecraft().ingameGUI.getChatGUI()
+            .printChatMessage(new ChatComponentText(I18n.format("waypointsharer.addedwaypoint", name)));
     }
 }
